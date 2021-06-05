@@ -5,5 +5,9 @@
   ],
   "*.{json,md,yml}": [
     "prettier --write"
+  ],
+  "**/*.scss": [
+    "stylefmt",
+    "stylelint '**/*.scss' --fix",
   ]
 }
