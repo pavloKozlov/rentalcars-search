@@ -6,10 +6,11 @@ import withValueOnChange from '../../hoc/withValueOnChange';
 /**
  * Input component.
  */
-const Input = ({ id, name, placeholder, onChange }) => (
+const Input = ({ id, value, name, placeholder, onChange }) => (
   <input
     id={id}
     name={name}
+    value={value}
     className="input"
     placeholder={placeholder}
     area-label={placeholder}
@@ -21,6 +22,7 @@ const Input = ({ id, name, placeholder, onChange }) => (
 Input.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
+  value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

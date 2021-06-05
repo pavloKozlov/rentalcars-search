@@ -4,7 +4,7 @@ import Autocomplete from './components/Autocomplete';
 
 const App = () => (
   <div>
-    <Autocomplete />
+    <Autocomplete onChange={(value) => console.log({ value })} />
   </div>
 );
 
