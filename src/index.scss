@@ -1,3 +1,9 @@
+@import './styles/varibles.scss';
+
+html {
+  font-family: $font-family;
+}
+
 body {
   margin: 0;
   color: #ff0000;

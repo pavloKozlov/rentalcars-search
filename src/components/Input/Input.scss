@@ -1,0 +1,9 @@
+@import '../../styles/varibles.scss';
+
+.input {
+    min-width: 200px;
+    height: 40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-family: $font-family;
+}
