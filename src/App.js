@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Autocomplete from './components/Autocomplete';
+import Search from './components/Search';
 
 const App = () => (
   <div>
-    <Autocomplete onChange={(value) => console.log({ value })} />
+    <Search />
   </div>
 );
 

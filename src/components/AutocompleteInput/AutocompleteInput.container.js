@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import useDebounce from '../../hooks/useDebounce';
-import Autocomplete from './Autocomplete';
+import AutocompleteInput from './AutocompleteInput';
 
-const AutocompleteContainer = ({ onChange }) => {
+const AutocompleteInputContainer = ({ onChange }) => {
   const [inputValue, setInputValue] = useState('');
 
   /**
@@ -21,11 +21,11 @@ const AutocompleteContainer = ({ onChange }) => {
     [setInputValue, debouncedOnChange]
   );
 
-  return <Autocomplete value={inputValue} onChange={onValueChange} />;
+  return <AutocompleteInput value={inputValue} onChange={onValueChange} />;
 };
 
-AutocompleteContainer.propTypes = {
+AutocompleteInputContainer.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default AutocompleteContainer;
+export default AutocompleteInputContainer;
