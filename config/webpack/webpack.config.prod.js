@@ -9,8 +9,7 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const commonConfig = require('./webpack.config.common');
 
-const paths = require('../paths');
-const pkg = require(paths.appPackageJson);
+const pkg = require('../../package.json');
 
 const config = {
   mode: 'production',
@@ -53,8 +52,8 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash].css',
@@ -64,9 +63,7 @@ const config = {
       swDest: 'sw.js',
       clientsClaim: true,
       skipWaiting: true,
-      exclude: [
-        /index\.html/,
-      ],
+      exclude: [/index\.html/],
     }),
     // new BundleAnalyzerPlugin(),
   ],
