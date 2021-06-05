@@ -1,0 +1,71 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/prettier"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "plugins": ["react-hooks", "prettier"],
+  "rules": {
+    "comma-dangle": [0, "never"],
+    "prefer-destructuring": 0,
+    "no-shadow": 0,
+    "no-tabs": 0,
+    "class-methods-use-this": 0,
+    "no-extra-boolean-cast": [
+      2,
+      {
+        "enforceForLogicalOperands": true
+      }
+    ],
+    "padded-blocks": 0,
+    "no-restricted-syntax": [2, "LabeledStatement", "WithStatement"],
+    "no-unused-vars": [
+      2,
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "no-plusplus": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/jsx-first-prop-new-line": [0, "multiline"],
+    "react/require-default-props": 0,
+    "react/prefer-stateless-function": 0,
+    "react/forbid-prop-types": 0,
+    "react/prop-types": [
+      2,
+      {
+        "ignore": ["children"]
+      }
+    ],
+    "linebreak-style": 1,
+    "no-debugger": 1,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react-hooks/rules-of-hooks": 2,
+    "import/no-extraneous-dependencies": [
+      2,
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.story.js",
+          "**/helpers/jest/**",
+          "./config/**",
+          "./scripts/**"
+        ]
+      }
+    ],
+    "prettier/prettier": [2],
+    "radix": 0,
+    "curly": 2
+  }
+}
