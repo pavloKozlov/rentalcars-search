@@ -1,12 +1,28 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import SearchService from '../../services/SearchService';
 import Search from './Search';
 
 const SearchContainer = () => {
-  const [results] = useState([]);
+  const [results, setResults] = useState([]);
   const onChange = useCallback((value) => {
-    console.log({ value });
+    SearchService.searchLocations(value).then((data) => setResults(data));
   }, []);
-  return <Search results={results} onChange={onChange} />;
+
+  const onChooseResult = useCallback((result) => {
+    console.log({ result });
+  }, []);
+
+  useEffect(() => {
+    onChange('ams');
+  }, []);
+
+  return (
+    <Search
+      results={results}
+      onChange={onChange}
+      onChooseResult={onChooseResult}
+    />
+  );
 };
 
 export default SearchContainer;

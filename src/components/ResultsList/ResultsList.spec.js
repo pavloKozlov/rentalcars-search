@@ -32,15 +32,15 @@ describe('ResultsList', () => {
     it('shold render ul with ResultList items if there are values', () => {
       const values = [
         {
-          locationId: '1',
+          placeKey: '1',
           placeType: 'place 1',
         },
         {
-          locationId: '2',
+          loplaceKeycationId: '2',
           placeType: 'place 2',
         },
         {
-          locationId: '3',
+          placeKey: '3',
           placeType: 'place 3',
         },
       ];
@@ -56,7 +56,7 @@ describe('ResultsList', () => {
       expect(items.length).toBe(values.length);
       for (let i = 0; i < values.length; i++) {
         const item = items.get(i);
-        expect(item.key).toBe(values[i].locationId);
+        expect(item.key).toBe(values[i].placeKey);
         expect(item.props.value).toBe(values[i]);
       }
     });
@@ -70,7 +70,7 @@ describe('ResultsList', () => {
       const wrapper = render({
         values: [
           {
-            locationId: '1',
+            placeKey: '1',
             placeType: 'place 1',
           },
         ],

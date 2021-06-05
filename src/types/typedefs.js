@@ -1,5 +1,5 @@
 /**
  * @typedef SearchResult
- * @property {string} locationId - The id of the location;
+ * @property {string} placeKey - The id of the place;
  * @property {string} placeType - The type of the place.
  */

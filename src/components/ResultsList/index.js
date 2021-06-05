@@ -1,3 +1,3 @@
-import ResultsList from './ResultsList';
+import ResultsListContainer from './ResultsList.container';
 
-export default ResultsList;
+export default ResultsListContainer;

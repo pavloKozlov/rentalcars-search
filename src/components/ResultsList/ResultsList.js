@@ -8,16 +8,22 @@ import './resultsList.scss';
  *
  * @param {object} params - The react component parameters.
  * @param {object[]} params.values - The list of search result items.
+ * @param {string} params.selectedIndex - The index of selected item.
  * @param {string} params.emptyMessage - The message to be displayed when there are no values.
  */
-const ResultsList = ({ values, emptyMessage }) => (
+const ResultsList = ({ values, selectedIndex, emptyMessage, onItemClick }) => (
   <div className="results-list">
     {values.length === 0 ? (
       <span className="results-list__empty">{emptyMessage}</span>
     ) : (
-      <ul className="results-list__list">
-        {values.map((value) => (
-          <ResultItem key={value.locationId} value={value} />
+      <ul className="results-list__list" role="listbox" onClick={onItemClick}>
+        {values.map((value, index) => (
+          <ResultItem
+            key={value.placeKey}
+            value={value}
+            isSelected={index === selectedIndex}
+            index={index}
+          />
         ))}
       </ul>
     )}
@@ -26,7 +32,9 @@ const ResultsList = ({ values, emptyMessage }) => (
 
 ResultsList.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
+  selectedIndex: PropTypes.object,
   emptyMessage: PropTypes.string,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 export default ResultsList;

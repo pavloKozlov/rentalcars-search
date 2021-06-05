@@ -12,19 +12,23 @@
 }
 
 .results-list-item {
-  align-items: center;
-  background-color: #fcfcfc;
-  border: 1px solid #6f6f6f;
+  background-color: #fff;
   box-sizing: border-box;
-  display: flex;
-  height: 40px;
-  justify-content: space-between;
+  color: #1a1a1a;
   list-style: none;
-  margin: 4px 0;
-  padding: 2px 10px;
 
-  &__link,
-  &__button {
-    height: 100%;
+  &[aria-selected='true'] {
+    background-color: #e7f4fe;
+  }
+
+  &__container {
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  &__divider {
+    border: 0;
+    border-top: 1px solid #e7e7e7;
+    margin: 0;
   }
 }
