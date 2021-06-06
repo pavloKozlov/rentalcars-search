@@ -1,7 +1,7 @@
+@import '../../../styles/varibles.scss';
+
 .results-list-item {
-  background-color: #fff;
-  box-sizing: border-box;
-  color: #1a1a1a;
+  color: $main-color;
   list-style: none;
 
   &[aria-selected='true'],
@@ -11,7 +11,7 @@
 
   &__container {
     align-items: flex-start;
-    color: #1a1a1a;
+    color: $main-color;
     cursor: pointer;
     display: flex;
     flex-direction: row;

@@ -1,4 +1,10 @@
+@import '../../styles/varibles.scss';
+
 .results-list {
+  background-color: #fff;
+  border: 1px solid $main-color;
+  border-radius: 4px;
+
   &__list {
     margin: 0;
     padding: 0;

@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import useKeyPress from '../../hooks/useKeyPress';
 import ResultsList from './ResultsList';
 
-const ResultsListContainer = ({ values, emptyMessage, onChange }) => {
+const ResultsListContainer = ({
+  values,
+  emptyMessage,
+  className,
+  onChange,
+}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onItemClick = useCallback(
@@ -54,6 +59,7 @@ const ResultsListContainer = ({ values, emptyMessage, onChange }) => {
       values={values}
       selectedIndex={selectedIndex}
       emptyMessage={emptyMessage}
+      className={className}
       onItemClick={onItemClick}
     />
   );
@@ -62,7 +68,13 @@ const ResultsListContainer = ({ values, emptyMessage, onChange }) => {
 ResultsListContainer.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
   emptyMessage: PropTypes.string,
+  className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+};
+
+ResultsListContainer.defaultProps = {
+  emptyMessage: '',
+  className: '',
 };
 
 export default ResultsListContainer;

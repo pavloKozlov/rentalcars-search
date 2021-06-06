@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ResultItem from './ResultItem/ResultsItem';
+import classnames from '../../utils/classnames';
+import ResultItem from './ResultItem';
 import './ResultsList.scss';
 
 /**
@@ -11,8 +12,14 @@ import './ResultsList.scss';
  * @param {string} params.selectedIndex - The index of selected item.
  * @param {string} params.emptyMessage - The message to be displayed when there are no values.
  */
-const ResultsList = ({ values, selectedIndex, emptyMessage, onItemClick }) => (
-  <div className="results-list">
+const ResultsList = ({
+  values,
+  selectedIndex,
+  emptyMessage,
+  className,
+  onItemClick,
+}) => (
+  <div className={classnames(['results-list', className])}>
     {values.length === 0 ? (
       <span className="results-list__empty">{emptyMessage}</span>
     ) : (
@@ -34,6 +41,7 @@ ResultsList.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
   selectedIndex: PropTypes.number,
   emptyMessage: PropTypes.string,
+  className: PropTypes.string,
   onItemClick: PropTypes.func.isRequired,
 };
 

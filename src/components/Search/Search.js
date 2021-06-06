@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AutocompleteInput from '../AutocompleteInput';
 import ResultsList from '../ResultsList';
+import LocationIcon from '../../assets/icons/location-icon.svg';
+import './Search.scss';
 
 const Search = ({
   results,
@@ -12,15 +14,25 @@ const Search = ({
   onFocus,
   onBlur,
 }) => (
-  <div>
-    <AutocompleteInput
-      displayValue={displayValue}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-    />
+  <div className="search">
+    <div className="search__input-container">
+      <span className="search__location-icon">
+        <LocationIcon />
+      </span>
+      <AutocompleteInput
+        displayValue={displayValue}
+        className="search__input"
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
+    </div>
     {isResultsVisible && (
-      <ResultsList values={results} onChange={onChooseResult} />
+      <ResultsList
+        className="search__results"
+        values={results}
+        onChange={onChooseResult}
+      />
     )}
   </div>
 );

@@ -5,6 +5,7 @@ import AutocompleteInput from './AutocompleteInput';
 
 const AutocompleteInputContainer = ({
   displayValue,
+  className,
   onChange,
   onFocus,
   onBlur,
@@ -33,6 +34,7 @@ const AutocompleteInputContainer = ({
   return (
     <AutocompleteInput
       value={inputValue}
+      className={className}
       onChange={onValueChange}
       onFocus={onFocus}
       onBlur={onBlur}
@@ -42,9 +44,14 @@ const AutocompleteInputContainer = ({
 
 AutocompleteInputContainer.propTypes = {
   displayValue: PropTypes.string,
+  className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+};
+
+AutocompleteInputContainer.defaultProps = {
+  className: '',
 };
 
 export default AutocompleteInputContainer;
