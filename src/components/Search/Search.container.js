@@ -2,6 +2,19 @@ import React, { useCallback, useEffect, useState } from 'react';
 import SearchService from '../../services/SearchService';
 import Search from './Search';
 
+const formatInputValue = (value) => {
+  if (!value) {
+    return '';
+  }
+  return [
+    value.iata ? `${value.name} (${value.iata})` : value.name,
+    value.city,
+    value.country,
+  ]
+    .filter((val) => !!val)
+    .join(', ');
+};
+
 const SearchContainer = () => {
   const [results, setResults] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);
@@ -28,7 +41,7 @@ const SearchContainer = () => {
       setSelectedValue(result);
       setIsResultsVisible(false);
     },
-    [setIsResultsVisible]
+    [setSelectedValue, setIsResultsVisible]
   );
 
   useEffect(() => {
@@ -38,7 +51,7 @@ const SearchContainer = () => {
   return (
     <Search
       results={results}
-      displayValue={selectedValue !== null ? selectedValue.placeKey : ''}
+      displayValue={formatInputValue(selectedValue)}
       isResultsVisible={isResultsVisible}
       onChange={onChange}
       onChooseResult={onChooseResult}

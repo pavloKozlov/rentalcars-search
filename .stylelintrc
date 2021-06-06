@@ -9,6 +9,8 @@
   ],
   "rules": {
     "scss/at-import-partial-extension-blacklist": null,
-    "scss/at-import-partial-extension-whitelist": ["scss"]
+    "scss/at-import-partial-extension-whitelist": ["scss"],
+    "scss/selector-no-redundant-nesting-selector": null,
+    "max-nesting-depth": 2,
   }
 }

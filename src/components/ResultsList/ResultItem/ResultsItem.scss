@@ -10,8 +10,49 @@
   }
 
   &__container {
+    align-items: flex-start;
+    color: #1a1a1a;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-weight: 500;
     padding: 8px;
+
+    & > *:not(:first-child) {
+      padding-left: 8px;
+    }
+  }
+
+  &__location-badge {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1rem;
+    min-width: 5rem;
+    padding: 2px 4px;
+    text-align: center;
+
+    &--type-A {
+      background-color: #961412;
+    }
+
+    &--type-C {
+      background-color: #0a63b0;
+    }
+
+    &--type-D {
+      background-color: #017c44;
+    }
+  }
+
+  &__line1 {
+    font-size: 14px;
+  }
+
+  &__line2 {
+    font-size: 12px;
   }
 
   &__divider {

@@ -57,11 +57,12 @@
       2,
       {
         "devDependencies": [
-          "**/*.spec.js",
+          "**/*.(test|spec).js",
           "./config/**"
         ]
       }
     ],
+    "import/prefer-default-export": 0,
     "prettier/prettier": [2],
     "radix": 0,
     "curly": 2

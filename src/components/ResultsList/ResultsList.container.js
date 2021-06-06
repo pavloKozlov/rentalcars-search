@@ -4,7 +4,7 @@ import useKeyPress from '../../hooks/useKeyPress';
 import ResultsList from './ResultsList';
 
 const ResultsListContainer = ({ values, emptyMessage, onChange }) => {
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onItemClick = useCallback(
     (event) => {
@@ -17,7 +17,7 @@ const ResultsListContainer = ({ values, emptyMessage, onChange }) => {
         onChange(values[idx]);
       }
     },
-    [setSelectedIndex]
+    [values, setSelectedIndex]
   );
 
   useKeyPress(
