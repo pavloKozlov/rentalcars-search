@@ -32,7 +32,8 @@ const SearchContainer = () => {
   }, []);
 
   const onBlur = useCallback(() => {
-    setIsResultsVisible(false);
+    // use timeout to let onChange fire first
+    setTimeout(() => setIsResultsVisible(false), 100);
   }, []);
 
   const onChooseResult = useCallback(
