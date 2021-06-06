@@ -19,6 +19,7 @@ const SearchContainer = () => {
   const [results, setResults] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);
   const [isResultsVisible, setIsResultsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChange = useCallback((value) => {
     if (value.length < 2) {
@@ -27,10 +28,15 @@ const SearchContainer = () => {
       }
       setIsResultsVisible(false);
     } else {
-      SearchService.searchLocations(value).then((data) => {
-        setResults(data);
-        setIsResultsVisible(true);
-      });
+      setIsLoading(true);
+      SearchService.searchLocations(value)
+        .then((data) => {
+          setResults(data);
+          setIsResultsVisible(true);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   }, []);
 
@@ -61,6 +67,7 @@ const SearchContainer = () => {
       results={results}
       displayValue={formatInputValue(selectedValue)}
       isResultsVisible={isResultsVisible}
+      isLoading={isLoading}
       onChange={onChange}
       onChooseResult={onChooseResult}
       onFocus={onFocus}
