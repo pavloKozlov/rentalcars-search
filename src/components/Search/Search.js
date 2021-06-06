@@ -31,6 +31,7 @@ const Search = ({
       <ResultsList
         className="search__results"
         values={results}
+        emptyMessage="No results found."
         onChange={onChooseResult}
       />
     )}
