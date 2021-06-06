@@ -6,7 +6,7 @@ import withValueOnChange from '../../hoc/withValueOnChange';
 /**
  * Input component.
  */
-const Input = ({ id, value, name, placeholder, onChange }) => (
+const Input = ({ id, value, name, placeholder, onChange, onFocus, onBlur }) => (
   <input
     id={id}
     name={name}
@@ -15,6 +15,8 @@ const Input = ({ id, value, name, placeholder, onChange }) => (
     placeholder={placeholder}
     area-label={placeholder}
     onChange={onChange}
+    onFocus={onFocus}
+    onBlur={onBlur}
     autoComplete="false"
   />
 );
@@ -25,6 +27,8 @@ Input.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default withValueOnChange(Input);

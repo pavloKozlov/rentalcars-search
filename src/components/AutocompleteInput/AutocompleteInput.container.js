@@ -1,10 +1,19 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useDebounce from '../../hooks/useDebounce';
 import AutocompleteInput from './AutocompleteInput';
 
-const AutocompleteInputContainer = ({ onChange }) => {
-  const [inputValue, setInputValue] = useState('');
+const AutocompleteInputContainer = ({
+  displayValue,
+  onChange,
+  onFocus,
+  onBlur,
+}) => {
+  const [inputValue, setInputValue] = useState(displayValue);
+
+  useEffect(() => {
+    setInputValue(displayValue);
+  }, [displayValue]);
 
   /**
    * Call onChange with debounce.
@@ -21,11 +30,21 @@ const AutocompleteInputContainer = ({ onChange }) => {
     [setInputValue, debouncedOnChange]
   );
 
-  return <AutocompleteInput value={inputValue} onChange={onValueChange} />;
+  return (
+    <AutocompleteInput
+      value={inputValue}
+      onChange={onValueChange}
+      onFocus={onFocus}
+      onBlur={onBlur}
+    />
+  );
 };
 
 AutocompleteInputContainer.propTypes = {
+  displayValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default AutocompleteInputContainer;

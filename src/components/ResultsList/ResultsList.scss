@@ -1,0 +1,12 @@
+.results-list {
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__empty {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../../types/typedefs';
-import '../resultsList.scss';
+import './ResultsItem.scss';
 
 /**
  * Component that renders search result item.

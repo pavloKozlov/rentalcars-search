@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ResultItem from './ResultItem/ResultsItem';
-import './resultsList.scss';
+import './ResultsList.scss';
 
 /**
  * Component that renders search results list.
@@ -32,7 +32,7 @@ const ResultsList = ({ values, selectedIndex, emptyMessage, onItemClick }) => (
 
 ResultsList.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
-  selectedIndex: PropTypes.object,
+  selectedIndex: PropTypes.number,
   emptyMessage: PropTypes.string,
   onItemClick: PropTypes.func.isRequired,
 };

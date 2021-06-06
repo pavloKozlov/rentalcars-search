@@ -1,23 +1,11 @@
-.results-list {
-  &__list {
-    margin: 0;
-    padding: 0;
-  }
-
-  &__empty {
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-  }
-}
-
 .results-list-item {
   background-color: #fff;
   box-sizing: border-box;
   color: #1a1a1a;
   list-style: none;
 
-  &[aria-selected='true'] {
+  &[aria-selected='true'],
+  &:hover {
     background-color: #e7f4fe;
   }
 

@@ -12,8 +12,9 @@ const ResultsListContainer = ({ values, emptyMessage, onChange }) => {
         '.results-list__list > .results-list-item'
       );
       if (listItem) {
-        const idx = listItem.getAttribute('data-idx');
-        setSelectedIndex(+idx);
+        const idx = +listItem.getAttribute('data-idx');
+        setSelectedIndex(idx);
+        onChange(values[idx]);
       }
     },
     [setSelectedIndex]
