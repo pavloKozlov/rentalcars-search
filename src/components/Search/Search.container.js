@@ -21,10 +21,17 @@ const SearchContainer = () => {
   const [isResultsVisible, setIsResultsVisible] = useState(false);
 
   const onChange = useCallback((value) => {
-    SearchService.searchLocations(value).then((data) => {
-      setResults(data);
-      setIsResultsVisible(true);
-    });
+    if (value.length < 2) {
+      if (value.length === 0) {
+        setResults([]);
+      }
+      setIsResultsVisible(false);
+    } else {
+      SearchService.searchLocations(value).then((data) => {
+        setResults(data);
+        setIsResultsVisible(true);
+      });
+    }
   }, []);
 
   const onFocus = useCallback(() => {
