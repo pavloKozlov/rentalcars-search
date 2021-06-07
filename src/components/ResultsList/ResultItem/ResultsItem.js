@@ -6,11 +6,6 @@ import './ResultsItem.scss';
 
 /**
  * Component that renders search result item.
- *
- * @param {object} params - The react component parameters.
- * @param {SearchResult} params.value - The object that represents single result item.
- * @param {boolean} params.isSelected - The flag that indicates if the items is selected (true) or not (false).
- * @param {number} params.index - The item index in the list.
  */
 const ResultItem = ({ id, value, isSelected, index, onHover }) => {
   const line1 = value.iata ? `${value.name} (${value.iata})` : value.name;

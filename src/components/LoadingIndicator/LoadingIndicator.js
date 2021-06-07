@@ -2,7 +2,7 @@ import React from 'react';
 import './LoadingIndicator.scss';
 
 /**
- * Loading indicator component.
+ * Component that renders loading indicator.
  */
 const LoadingIndicator = () => <div className="loading-indicator" />;
 

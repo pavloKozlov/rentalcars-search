@@ -8,6 +8,9 @@ import './Search.scss';
 
 const OPTION_ID_PREFIX = 'location-item-';
 
+/**
+ * Component that renders search.
+ */
 const Search = ({
   results,
   displayValue,

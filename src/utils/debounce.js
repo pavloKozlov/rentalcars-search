@@ -3,6 +3,7 @@
  *
  * @param {Function} fn - The callback function that will be called.
  * @param {number} delay - The delay in miliseconds.
+ * @returns {Function} The function to be called to trigger debounce flow.
  */
 const debounce = (fn, delay) => {
   let timer;

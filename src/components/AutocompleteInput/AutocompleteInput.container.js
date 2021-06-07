@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import useDebounce from '../../hooks/useDebounce';
 import AutocompleteInput from './AutocompleteInput';
 
+/**
+ * Container component for autocomlete input.
+ */
 const AutocompleteInputContainer = ({
   displayValue,
   className,
@@ -24,7 +27,7 @@ const AutocompleteInputContainer = ({
     onChange(value);
   }, 500);
 
-  const onValueChange = useCallback(
+  const valueChangeHandler = useCallback(
     (value) => {
       setInputValue(value);
       debouncedOnChange(value);
@@ -37,7 +40,7 @@ const AutocompleteInputContainer = ({
       value={inputValue}
       className={className}
       activedescendant={activedescendant}
-      onChange={onValueChange}
+      onChange={valueChangeHandler}
       onFocus={onFocus}
       onBlur={onBlur}
     />

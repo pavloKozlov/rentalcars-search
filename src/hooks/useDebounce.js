@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import debounce from '../utils/debounce';
 
 /**
- * Custom react hook to deboiunce function.
+ * Custom react hook to debounce function.
  *
  * @param {Function} fn - The callback function that will be called.
  * @param {number} delay - The delay in miliseconds.

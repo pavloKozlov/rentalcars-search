@@ -5,7 +5,7 @@ import './Input.scss';
 import withValueOnChange from '../../hoc/withValueOnChange';
 
 /**
- * Input component.
+ * Component that render input element.
  */
 const Input = ({
   id,

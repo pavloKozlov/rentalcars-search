@@ -1,5 +1,11 @@
 const NUMBER_OF_RESULTS = 6;
 
+/**
+ * Service to search for locations based on the search term.
+ *
+ * @param {string} searchTerm - The search string.
+ * @returns {Promise} Promise that represents api request.
+ */
 const searchLocations = (searchTerm) =>
   fetch(
     `https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=${NUMBER_OF_RESULTS}&solrTerm=${searchTerm}`

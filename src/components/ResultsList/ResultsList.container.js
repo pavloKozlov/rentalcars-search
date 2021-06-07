@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useKeyPress from '../../hooks/useKeyPress';
+import { getOptionIndexFromEvent } from './resultsListUtils';
 import ResultsList from './ResultsList';
 
-const getOptionIndexFromEvent = (event) => {
-  const listItem = event.target.closest(
-    '.results-list__list > .results-list-item'
-  );
-  return listItem ? +listItem.getAttribute('data-idx') : -1;
-};
-
+/**
+ * Container component for search results list.
+ */
 const ResultsListContainer = ({
   values,
   emptyMessage,

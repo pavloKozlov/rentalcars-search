@@ -4,8 +4,7 @@
   color: $main-color;
   list-style: none;
 
-  &[aria-selected='true'],
-  &:hover {
+  &[aria-selected='true'] {
     background-color: #e7f4fe;
   }
 

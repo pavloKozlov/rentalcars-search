@@ -1,20 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import SearchService from '../../services/SearchService';
+import { formatInputValue } from './searchUtils';
 import Search from './Search';
 
-const formatInputValue = (value) => {
-  if (!value) {
-    return '';
-  }
-  return [
-    value.iata ? `${value.name} (${value.iata})` : value.name,
-    value.city,
-    value.country,
-  ]
-    .filter((val) => !!val)
-    .join(', ');
-};
-
+/**
+ * Container component for search.
+ */
 const SearchContainer = () => {
   const [results, setResults] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);

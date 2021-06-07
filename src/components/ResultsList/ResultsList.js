@@ -6,11 +6,6 @@ import './ResultsList.scss';
 
 /**
  * Component that renders search results list.
- *
- * @param {object} params - The react component parameters.
- * @param {object[]} params.values - The list of search result items.
- * @param {string} params.selectedIndex - The index of selected item.
- * @param {string} params.emptyMessage - The message to be displayed when there are no values.
  */
 const ResultsList = ({
   values,
