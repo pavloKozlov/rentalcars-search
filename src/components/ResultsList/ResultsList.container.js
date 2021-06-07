@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import useKeyPress from '../../hooks/useKeyPress';
 import ResultsList from './ResultsList';
 
+const getOptionIndexFromEvent = (event) => {
+  const listItem = event.target.closest(
+    '.results-list__list > .results-list-item'
+  );
+  return listItem ? +listItem.getAttribute('data-idx') : -1;
+};
+
 const ResultsListContainer = ({
   values,
   emptyMessage,
@@ -23,16 +30,23 @@ const ResultsListContainer = ({
 
   const onItemClick = useCallback(
     (event) => {
-      const listItem = event.target.closest(
-        '.results-list__list > .results-list-item'
-      );
-      if (listItem) {
-        const idx = +listItem.getAttribute('data-idx');
-        selectItem(idx);
-        onChange(values[idx]);
+      const index = getOptionIndexFromEvent(event);
+      if (index > -1) {
+        selectItem(index);
+        onChange(values[index]);
       }
     },
     [values, setSelectedIndex, onChange, selectItem]
+  );
+
+  const onItemHover = useCallback(
+    (event) => {
+      const index = getOptionIndexFromEvent(event);
+      if (index > -1) {
+        selectItem(index);
+      }
+    },
+    [selectedIndex]
   );
 
   useKeyPress(
@@ -70,6 +84,7 @@ const ResultsListContainer = ({
       className={className}
       optionIdPrefix={optionIdPrefix}
       onItemClick={onItemClick}
+      onItemHover={onItemHover}
     />
   );
 };

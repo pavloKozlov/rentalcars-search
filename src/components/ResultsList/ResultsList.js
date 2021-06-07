@@ -19,6 +19,7 @@ const ResultsList = ({
   className,
   optionIdPrefix,
   onItemClick,
+  onItemHover,
 }) => (
   <div className={classnames(['results-list', className])}>
     {values.length === 0 ? (
@@ -32,6 +33,7 @@ const ResultsList = ({
             value={value}
             isSelected={index === selectedIndex}
             index={index}
+            onHover={onItemHover}
           />
         ))}
       </ul>
@@ -46,6 +48,7 @@ ResultsList.propTypes = {
   className: PropTypes.string,
   optionIdPrefix: PropTypes.string,
   onItemClick: PropTypes.func.isRequired,
+  onItemHover: PropTypes.func.isRequired,
 };
 
 export default ResultsList;

@@ -12,7 +12,7 @@ import './ResultsItem.scss';
  * @param {boolean} params.isSelected - The flag that indicates if the items is selected (true) or not (false).
  * @param {number} params.index - The item index in the list.
  */
-const ResultItem = ({ id, value, isSelected, index }) => {
+const ResultItem = ({ id, value, isSelected, index, onHover }) => {
   const line1 = value.iata ? `${value.name} (${value.iata})` : value.name;
   const line2 = [value.city, value.region, value.country]
     .filter((val) => !!val)
@@ -26,6 +26,7 @@ const ResultItem = ({ id, value, isSelected, index }) => {
       className="results-list-item"
       role="option"
       aria-selected={isSelected}
+      onMouseEnter={onHover}
     >
       <div className="results-list-item__container" role="button" tabIndex="0">
         <span className={locationBadge}>
@@ -54,6 +55,7 @@ ResultItem.propTypes = {
   }),
   isSelected: PropTypes.bool,
   index: PropTypes.number.isRequired,
+  onHover: PropTypes.func,
 };
 
 ResultItem.defaultProps = {
