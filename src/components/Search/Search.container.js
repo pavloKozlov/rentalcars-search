@@ -28,6 +28,9 @@ const SearchContainer = () => {
           setResults(data);
           setIsResultsVisible(true);
         })
+        .catch(() => {
+          // handle error
+        })
         .finally(() => {
           setIsLoading(false);
         });
