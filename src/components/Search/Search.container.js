@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import SearchService from '../../services/SearchService';
 import { formatInputValue } from './searchUtils';
 import Search from './Search';
+
+const MIN_CHARS_TO_SEARCH = 2;
 
 /**
  * Container component for search.
@@ -14,7 +16,7 @@ const SearchContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onChange = useCallback((value) => {
-    if (value.length < 2) {
+    if (value.length < MIN_CHARS_TO_SEARCH) {
       if (value.length === 0) {
         setResults([]);
       }
@@ -39,9 +41,15 @@ const SearchContainer = () => {
     [setSelectedIndex]
   );
 
-  const onFocus = useCallback(() => {
-    setIsResultsVisible(true);
-  }, []);
+  const onFocus = useCallback(
+    (event) => {
+      const value = event.target.value;
+      if (value.length >= MIN_CHARS_TO_SEARCH) {
+        setIsResultsVisible(true);
+      }
+    },
+    [setIsResultsVisible]
+  );
 
   const onBlur = useCallback(() => {
     // use timeout to let onChange fire first
@@ -56,10 +64,6 @@ const SearchContainer = () => {
     },
     [setSelectedValue, setIsResultsVisible]
   );
-
-  useEffect(() => {
-    onChange('ams');
-  }, []);
 
   return (
     <Search
