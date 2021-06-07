@@ -17,6 +17,7 @@ const ResultsList = ({
   selectedIndex,
   emptyMessage,
   className,
+  optionIdPrefix,
   onItemClick,
 }) => (
   <div className={classnames(['results-list', className])}>
@@ -27,6 +28,7 @@ const ResultsList = ({
         {values.map((value, index) => (
           <ResultItem
             key={value.placeKey}
+            id={`${optionIdPrefix}${index}`}
             value={value}
             isSelected={index === selectedIndex}
             index={index}
@@ -42,6 +44,7 @@ ResultsList.propTypes = {
   selectedIndex: PropTypes.number,
   emptyMessage: PropTypes.string,
   className: PropTypes.string,
+  optionIdPrefix: PropTypes.string,
   onItemClick: PropTypes.func.isRequired,
 };
 

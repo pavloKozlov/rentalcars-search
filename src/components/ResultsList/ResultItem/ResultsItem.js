@@ -12,7 +12,7 @@ import './ResultsItem.scss';
  * @param {boolean} params.isSelected - The flag that indicates if the items is selected (true) or not (false).
  * @param {number} params.index - The item index in the list.
  */
-const ResultItem = ({ value, isSelected, index }) => {
+const ResultItem = ({ id, value, isSelected, index }) => {
   const line1 = value.iata ? `${value.name} (${value.iata})` : value.name;
   const line2 = [value.city, value.region, value.country]
     .filter((val) => !!val)
@@ -21,12 +21,13 @@ const ResultItem = ({ value, isSelected, index }) => {
 
   return (
     <li
+      id={id}
       data-idx={index}
       className="results-list-item"
       role="option"
       aria-selected={isSelected}
     >
-      <div className="results-list-item__container">
+      <div className="results-list-item__container" role="button" tabIndex="0">
         <span className={locationBadge}>
           {getNameByPlaceType(value.placeType)}
         </span>
@@ -41,6 +42,7 @@ const ResultItem = ({ value, isSelected, index }) => {
 };
 
 ResultItem.propTypes = {
+  id: PropTypes.string,
   value: PropTypes.shape({
     iata: PropTypes.string,
     name: PropTypes.string.isRequired,

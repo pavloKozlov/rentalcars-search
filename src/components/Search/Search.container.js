@@ -19,6 +19,7 @@ const SearchContainer = () => {
   const [results, setResults] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);
   const [isResultsVisible, setIsResultsVisible] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const onChange = useCallback((value) => {
@@ -39,6 +40,13 @@ const SearchContainer = () => {
         });
     }
   }, []);
+
+  const onSelectionChange = useCallback(
+    (value) => {
+      setSelectedIndex(value);
+    },
+    [setSelectedIndex]
+  );
 
   const onFocus = useCallback(() => {
     setIsResultsVisible(true);
@@ -67,11 +75,13 @@ const SearchContainer = () => {
       results={results}
       displayValue={formatInputValue(selectedValue)}
       isResultsVisible={isResultsVisible}
+      selectedIndex={selectedIndex}
       isLoading={isLoading}
       onChange={onChange}
       onChooseResult={onChooseResult}
       onFocus={onFocus}
       onBlur={onBlur}
+      onSelectionChange={onSelectionChange}
     />
   );
 };

@@ -6,15 +6,19 @@ import LocationIcon from '../../assets/icons/location-icon.svg';
 import LoadingIndicator from '../LoadingIndicator';
 import './Search.scss';
 
+const OPTION_ID_PREFIX = 'location-item-';
+
 const Search = ({
   results,
   displayValue,
   isResultsVisible,
+  selectedIndex,
   isLoading,
   onChange,
   onChooseResult,
   onFocus,
   onBlur,
+  onSelectionChange,
 }) => (
   <div className="search">
     <div className="search__input-container">
@@ -24,6 +28,9 @@ const Search = ({
       <AutocompleteInput
         displayValue={displayValue}
         className="search__input"
+        activedescendant={
+          isResultsVisible ? `${OPTION_ID_PREFIX}${selectedIndex}` : null
+        }
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -39,7 +46,9 @@ const Search = ({
         className="search__results"
         values={results}
         emptyMessage="No results found."
+        optionIdPrefix={OPTION_ID_PREFIX}
         onChange={onChooseResult}
+        onSelectionChange={onSelectionChange}
       />
     )}
   </div>
@@ -50,10 +59,12 @@ Search.propTypes = {
   displayValue: PropTypes.string,
   isResultsVisible: PropTypes.bool,
   isLoading: PropTypes.bool,
+  selectedIndex: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   onChooseResult: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onSelectionChange: PropTypes.func,
 };
 
 Search.defaultProps = {

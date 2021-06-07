@@ -13,6 +13,7 @@ const Input = ({
   name,
   placeholder,
   className,
+  activedescendant,
   onChange,
   onFocus,
   onBlur,
@@ -28,6 +29,7 @@ const Input = ({
     onFocus={onFocus}
     onBlur={onBlur}
     autoComplete="false"
+    aria-activedescendant={activedescendant}
   />
 );
 
@@ -37,6 +39,7 @@ Input.propTypes = {
   value: PropTypes.string,
   className: PropTypes.string,
   placeholder: PropTypes.string,
+  activedescendant: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

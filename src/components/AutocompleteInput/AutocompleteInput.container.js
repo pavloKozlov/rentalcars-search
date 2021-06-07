@@ -6,6 +6,7 @@ import AutocompleteInput from './AutocompleteInput';
 const AutocompleteInputContainer = ({
   displayValue,
   className,
+  activedescendant,
   onChange,
   onFocus,
   onBlur,
@@ -35,6 +36,7 @@ const AutocompleteInputContainer = ({
     <AutocompleteInput
       value={inputValue}
       className={className}
+      activedescendant={activedescendant}
       onChange={onValueChange}
       onFocus={onFocus}
       onBlur={onBlur}
@@ -45,6 +47,7 @@ const AutocompleteInputContainer = ({
 AutocompleteInputContainer.propTypes = {
   displayValue: PropTypes.string,
   className: PropTypes.string,
+  activedescendant: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

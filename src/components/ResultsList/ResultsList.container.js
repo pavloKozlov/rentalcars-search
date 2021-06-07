@@ -7,9 +7,19 @@ const ResultsListContainer = ({
   values,
   emptyMessage,
   className,
+  optionIdPrefix,
   onChange,
+  onSelectionChange,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const selectItem = useCallback(
+    (index) => {
+      setSelectedIndex(index);
+      onSelectionChange(index);
+    },
+    [setSelectedIndex, onSelectionChange]
+  );
 
   const onItemClick = useCallback(
     (event) => {
@@ -18,11 +28,11 @@ const ResultsListContainer = ({
       );
       if (listItem) {
         const idx = +listItem.getAttribute('data-idx');
-        setSelectedIndex(idx);
+        selectItem(idx);
         onChange(values[idx]);
       }
     },
-    [values, setSelectedIndex]
+    [values, setSelectedIndex, onChange, selectItem]
   );
 
   useKeyPress(
@@ -30,28 +40,26 @@ const ResultsListContainer = ({
       const { keyCode } = event;
       let idx = selectedIndex;
       switch (keyCode) {
-        case 40:
-          // down key
+        case 13: // enter
+        case 32: // space
+          onChange(values[idx]);
+          break;
+        case 40: // arrow down
           idx++;
           break;
-        case 38:
-          // up key
+        case 38: // arrow up
           idx--;
-          break;
-        case 13:
-          // enter key
-          onChange(values[idx]);
           break;
         default:
       }
       const newIdx = (idx + values.length) % values.length;
-      setSelectedIndex(newIdx);
+      selectItem(newIdx);
     },
     [selectedIndex, onChange]
   );
 
   useEffect(() => {
-    setSelectedIndex(values.length > 0 ? 0 : -1);
+    selectItem(values.length > 0 ? 0 : -1);
   }, [values]);
 
   return (
@@ -60,6 +68,7 @@ const ResultsListContainer = ({
       selectedIndex={selectedIndex}
       emptyMessage={emptyMessage}
       className={className}
+      optionIdPrefix={optionIdPrefix}
       onItemClick={onItemClick}
     />
   );
@@ -69,7 +78,9 @@ ResultsListContainer.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
   emptyMessage: PropTypes.string,
   className: PropTypes.string,
+  optionIdPrefix: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onSelectionChange: PropTypes.func.isRequired,
 };
 
 ResultsListContainer.defaultProps = {
