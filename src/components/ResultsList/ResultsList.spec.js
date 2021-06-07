@@ -3,9 +3,16 @@ import { shallow } from 'enzyme';
 import ResultsList from './ResultsList';
 import ResultItem from './ResultItem/ResultsItem';
 
+const OPTION_ID_PREFIX = 'some-prefix-';
+
 const defaultProps = {
   values: [],
   emptyMessage: 'some message',
+  selectedIndex: 0,
+  className: 'some-class',
+  optionIdPrefix: OPTION_ID_PREFIX,
+  onItemClick: jest.fn(),
+  onItemHover: jest.fn(),
 };
 
 describe('ResultsList', () => {
@@ -22,21 +29,49 @@ describe('ResultsList', () => {
   describe('list', () => {
     const getList = (wrapper) => wrapper.find('ul');
 
-    it('should render empty ul if there are values', () => {
+    it('should not render empty ul if there are no values', () => {
       const wrapper = render();
 
       const ul = getList(wrapper);
       expect(ul.exists()).toBe(false);
     });
 
+    it('should render ul with role === `listbox` if there are values', () => {
+      const values = [
+        {
+          placeKey: '1',
+          placeType: 'place 1',
+        },
+      ];
+      const wrapper = render({
+        values,
+      });
+      const ul = getList(wrapper);
+      expect(ul.exists()).toBe(true);
+      expect(ul.prop('role')).toBe('listbox');
+    });
+
+    it('should concatenetae classNames on the top level of the component', () => {
+      const ADDITIONAL_CLASS_NAME = 'another-class-name and-more-css';
+      const wrapper = render({
+        className: ADDITIONAL_CLASS_NAME,
+      });
+
+      const topLevelDiv = wrapper.find('div');
+      expect(topLevelDiv.prop('className')).toBe(
+        `results-list ${ADDITIONAL_CLASS_NAME}`
+      );
+    });
+
     it('shold render ul with ResultList items if there are values', () => {
+      const SELECTED_INDEX = 2;
       const values = [
         {
           placeKey: '1',
           placeType: 'place 1',
         },
         {
-          loplaceKeycationId: '2',
+          placeKey: '2',
           placeType: 'place 2',
         },
         {
@@ -46,6 +81,39 @@ describe('ResultsList', () => {
       ];
       const wrapper = render({
         values,
+        selectedIndex: SELECTED_INDEX,
+      });
+
+      const ul = getList(wrapper);
+      expect(ul.exists()).toBe(true);
+
+      const items = ul.find(ResultItem);
+      expect(items.length).toBe(values.length);
+      for (let i = 0; i < values.length; i++) {
+        const item = items.get(i);
+        expect(item.key).toBe(values[i].placeKey);
+        expect(item.props.value).toBe(values[i]);
+        expect(item.props.id).toBe(`${OPTION_ID_PREFIX}${i}`);
+        expect(item.props.isSelected).toBe(i === SELECTED_INDEX);
+      }
+    });
+
+    it('should call onItemClick callback when the list is clicked', () => {
+      const clickHandler = jest.fn();
+
+      const values = [
+        {
+          placeKey: '1',
+          placeType: 'place 1',
+        },
+        {
+          placeKey: '2',
+          placeType: 'place 2',
+        },
+      ];
+      const wrapper = render({
+        values,
+        onItemClick: clickHandler,
       });
 
       const ul = getList(wrapper);
@@ -53,12 +121,8 @@ describe('ResultsList', () => {
 
       const items = ul.find(ResultItem);
       expect(items.exists()).toBe(true);
-      expect(items.length).toBe(values.length);
-      for (let i = 0; i < values.length; i++) {
-        const item = items.get(i);
-        expect(item.key).toBe(values[i].placeKey);
-        expect(item.props.value).toBe(values[i]);
-      }
+      ul.simulate('click');
+      expect(clickHandler.mock.calls.length).toBe(1);
     });
   });
 

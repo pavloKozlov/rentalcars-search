@@ -57,7 +57,8 @@
       2,
       {
         "devDependencies": [
-          "**/*.(test|spec).js",
+          "**/*.test.js",
+          "**/*.spec.js",
           "./config/**"
         ]
       }
