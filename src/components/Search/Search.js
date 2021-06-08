@@ -48,6 +48,7 @@ const Search = ({
       <ResultsList
         className="search__results"
         values={results}
+        selectedIndex={selectedIndex}
         emptyMessage="No results found."
         optionIdPrefix={OPTION_ID_PREFIX}
         onChange={onChooseResult}

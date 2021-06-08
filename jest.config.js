@@ -6,6 +6,7 @@ module.exports = {
   transformIgnorePatterns: ['/node_modules/(?!@)/'],
   moduleNameMapper: {
     '^.+\\.(css|scss)$': 'identity-obj-proxy',
+    '\\.svg': '<rootDir>/__mocks__/svgrMock.js',
   },
   moduleFileExtensions: ['js', 'jsx'],
   testEnvironment: 'jsdom',
