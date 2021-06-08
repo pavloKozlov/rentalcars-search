@@ -18,7 +18,7 @@ const config = {
     moduleIds: 'deterministic',
     runtimeChunk: 'single',
     splitChunks: {
-      maxSize: 2050000,
+      maxSize: 50000,
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
