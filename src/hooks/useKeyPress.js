@@ -8,10 +8,10 @@ import { useEffect } from 'react';
  */
 const useKeyPress = (fn, deps) => {
   useEffect(() => {
-    window.addEventListener('keydown', fn);
+    document.addEventListener('keydown', fn);
 
     return () => {
-      window.removeEventListener('keydown', fn);
+      document.removeEventListener('keydown', fn);
     };
   }, deps);
 };

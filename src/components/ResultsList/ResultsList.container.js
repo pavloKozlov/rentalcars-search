@@ -15,7 +15,7 @@ const ResultsListContainer = ({
   onChange,
   onSelectionChange,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const selectItem = useCallback(
     (index) => {
