@@ -24,6 +24,10 @@ const SearchContainer = () => {
       setIsResultsVisible(false);
     } else {
       setIsLoading(true);
+      // Using promise inside react component is not the best practice
+      // The promise could be resolved or rejected by the time component is unmounted,
+      // thus react will not be able to set state on unmounted component
+      // there are better ways deal with it
       SearchService.searchLocations(value)
         .then((data) => {
           setResults(data);
