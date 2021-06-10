@@ -31,7 +31,6 @@ const SearchContainer = () => {
       SearchService.searchLocations(value)
         .then((data) => {
           setResults(data);
-          setSelectedIndex(data.length > 0 ? 0 : -1);
           setIsResultsVisible(true);
         })
         .catch(() => {
@@ -72,29 +71,20 @@ const SearchContainer = () => {
         return;
       }
       const { keyCode } = event;
-      let idx = selectedIndex;
       switch (keyCode) {
-        case 13: // enter
-        case 32: // space
-          onChooseResult(results[idx]);
-          break;
         case 27: // esc
           setIsResultsVisible(false); // hide results list
           break;
         case 40: // arrow down
-          idx++;
           event.preventDefault(); // prevent from chaning cursor position in the input
           break;
         case 38: // arrow up
-          idx--;
           event.preventDefault(); // prevent from chaning cursor position in the input
           break;
         default:
       }
-      const newIdx = (idx + results.length) % results.length;
-      setSelectedIndex(newIdx);
     },
-    [selectedIndex, isResultsVisible, onChange, setIsResultsVisible]
+    [isResultsVisible]
   );
 
   return (
